@@ -34,6 +34,14 @@ node {
         // checkout scm     // En este caso se hace un checkout del mismo repo donde está el JENKINSFILE
         // checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[credentialsId: 'MiCredencialGitHub', url: 'https://github.com/IvanciniGT/cursoJenkinsWebapp.git']]])
     try{
+        stage("Información Build"){
+            print currentBuild.result
+            print currentBuild.number
+            print currentBuild.displayName
+            print currentBuild.buildCauses
+            print currentBuild.projectName
+            print currentBuild.previousBuild
+        }
         stage ("Hacer las cosas") {
             echo "Hago mis cosas de mi tarea"
             sh "sleep ${DEMORA}"
@@ -50,6 +58,7 @@ node {
             }
             echo 'Pues no ha sido para tanto !!!!'
         }
+        
         stage ("Generar fichero") {
             sh "echo '${CONTENIDO}' > ${FICHERO}"
         }
